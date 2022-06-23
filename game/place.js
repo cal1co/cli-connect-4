@@ -9,6 +9,12 @@ const play = (col, inputBoard=board.board) => {
         for (let i = inputBoard.length - 1; i >= 0; i--){
             if (gameState.params.inPlay){
                 if (inputBoard[i][col] === 0){
+                    if (settings.params.pcPlayer && gameState.params.playerTurn === 1){
+                        console.clear()
+                    }
+                    if (!settings.params.pcPlayer){
+                        console.clear()
+                    }
                     inputBoard[i][col] = gameState.params.playerTurn;
                     msg.placed(col)
                     board.drawBoard()
@@ -25,7 +31,7 @@ const play = (col, inputBoard=board.board) => {
                         msg.pcMoveMsg()
                     }
                 }
-                console.log(`%cPlayer ${gameState.params.currentPlayer} make your move`, "color:lightgreen");
+                // console.log(`%cPlayer ${gameState.params.currentPlayer} make your move`, "color:lightgreen");
             }   
         }
     } else {

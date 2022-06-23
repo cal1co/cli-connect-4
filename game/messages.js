@@ -10,18 +10,34 @@ import settings from './settings.js'
 import place from './place.js'
 import pc from './pc.js'
 
-const winMsg = () => {
-    console.log(`%c${gameState.params.currentPlayer} WINS!`, "color:orange; font-family:sans-serif")
-    gameState.params.winner = gameState.params.currentPlayer
-    gameState.params.inPlay = false
+const load = (ms = 2000) => new Promise((r) => setTimeout(r, ms))
+const start = (ms = 1000) => new Promise((r) => setTimeout(r, ms))
+
+async function winMsg(winner){
+    const spinner = createSpinner('Checking for winner').start()
+    await load()
+    console.clear()
+    spinner.success({text: 'Winner found!'})
+    // console.clear();
+
+    const msg = `${winner} WINS!`
+
+    figlet(msg, (err, data) => {
+        console.log(gradient.pastel.multiline(data))
+    })
+    
+    process.exit(1)
 }
 
 const placed = (col) => {
-    console.log('YOU PLACED IN COLUMN', col)
+    const str = `${gameState.params.currentPlayer} PLACED IN COLUMN ${col}`
+    const placedMsg = chalkAnimation.karaoke(str)
+    if (gameState.params.playerTurn === 1){
+        console.log(chalk.blue.bold.underline("Player X placed in column", col))
+    } else {
+        console.log(chalk.red.bold.underline("Player O placed in column", col))
+    }
 }
-
-const load = (ms = 2000) => new Promise((r) => setTimeout(r, ms))
-const start = (ms = 1000) => new Promise((r) => setTimeout(r, ms))
 
 async function welcome(){
     console.clear();
@@ -48,16 +64,20 @@ async function gameTypePrompt(){
 }
 
 async function playPrompt(){
+    if (settings.params.pcPlayer){
+        gameState.params.currentPlayer = 'X'
+    }
     const playChoice = await inquirer.prompt({
         name:'move',
         type:'input',
-        message:'Place your token in position 0 to 6'
+        message:`Player ${gameState.params.currentPlayer}, place your token in a position from 0 to 6: `
     })
     place.play(playChoice.move)
 
     if (gameState.params.inPlay){
         await playPrompt()
     }
+
 }
 
 

@@ -51,7 +51,7 @@ const checkWin = (currRow, currCol, inputBoard=board) => {
         let snippetSum = snippet.reduce((partialSum, a) => partialSum + a, 0)
 
         if ((snippetSum * gameState.params.playerTurn) === 4){
-            msg.winMsg()
+            msg.winMsg(gameState.params.currentPlayer)
         }
     }
 
@@ -64,7 +64,7 @@ const checkWin = (currRow, currCol, inputBoard=board) => {
         let snippetSum = snippet.reduce((partialSum, a) => partialSum + a, 0)
 
         if ((snippetSum * gameState.params.playerTurn) === 4){
-            msg.winMsg()
+            msg.winMsg(gameState.params.currentPlayer)
         }
     }
 
@@ -75,7 +75,7 @@ const checkWin = (currRow, currCol, inputBoard=board) => {
             let currRightTotal = inputBoard[j][i + 3] + inputBoard[j + 1][i + 2] + inputBoard[j + 2][i + 1] + inputBoard[j + 3][i]
 
             if ((currRightTotal * gameState.params.playerTurn) === 4 || (currLeftTotal * gameState.params.playerTurn) === 4){
-                msg.winMsg()
+                msg.winMsg(gameState.params.currentPlayer)
             }
         }
     }
