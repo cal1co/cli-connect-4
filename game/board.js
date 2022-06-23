@@ -9,7 +9,6 @@ const boardParams = {
 let board = []
 const refreshBoard = () => {
     board = Array(boardParams.height).fill().map(() => Array(boardParams.length).fill(0))
-
 } 
 refreshBoard()
 

@@ -1,6 +1,5 @@
 import gameState from './gameState.js'
 import board from './board.js'
-import pc from './pc.js'
 import settings from './settings.js'
 import msg from './messages.js'
 

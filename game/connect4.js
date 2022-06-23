@@ -2,7 +2,6 @@
 
 import board from './board.js'
 import msg from './messages.js'
-import chalkAnimation from 'chalk-animation'
 
 
 await msg.welcome()
