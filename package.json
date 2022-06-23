@@ -1,14 +1,14 @@
 {
   "name": "cli-connect-4",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "connect4.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node ./game/connect4.js"
+    "start": "node ./game/connect4.js"
   },
-  "bin":"./game/connect4.js",
+  "bin": "./game/connect4.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
