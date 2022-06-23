@@ -9,6 +9,7 @@ const boardParams = {
 let board = []
 const refreshBoard = () => {
     board = Array(boardParams.height).fill().map(() => Array(boardParams.length).fill(0))
+    return board
 } 
 refreshBoard()
 
@@ -44,13 +45,19 @@ const drawBoard = (inputBoard=board) => {
 
 const checkWin = (currRow, currCol, inputBoard=board) => {
 
+    const winnerFound = () => {
+        msg.winMsg(gameState.params.currentPlayer)
+
+    }
+
     // ROWS
     for (let row = 0; row < 4; row++){
         let snippet = inputBoard[currRow].slice(row, (row + 4))
         let snippetSum = snippet.reduce((partialSum, a) => partialSum + a, 0)
 
         if ((snippetSum * gameState.params.playerTurn) === 4){
-            msg.winMsg(gameState.params.currentPlayer)
+            winnerFound()
+            return 'winner'
         }
     }
 
@@ -63,7 +70,8 @@ const checkWin = (currRow, currCol, inputBoard=board) => {
         let snippetSum = snippet.reduce((partialSum, a) => partialSum + a, 0)
 
         if ((snippetSum * gameState.params.playerTurn) === 4){
-            msg.winMsg(gameState.params.currentPlayer)
+            winnerFound()
+            return 'winner'
         }
     }
 
@@ -74,14 +82,13 @@ const checkWin = (currRow, currCol, inputBoard=board) => {
             let currRightTotal = inputBoard[j][i + 3] + inputBoard[j + 1][i + 2] + inputBoard[j + 2][i + 1] + inputBoard[j + 3][i]
 
             if ((currRightTotal * gameState.params.playerTurn) === 4 || (currLeftTotal * gameState.params.playerTurn) === 4){
-                msg.winMsg(gameState.params.currentPlayer)
+                winnerFound()
+                return 'winner'
             }
         }
     }
 
 }
-
-
 
 export default {
     board, 

@@ -13,10 +13,10 @@ const load = (ms = 2000) => new Promise((r) => setTimeout(r, ms))
 const start = (ms = 1000) => new Promise((r) => setTimeout(r, ms))
 
 async function winMsg(winner){
-    const spinner = createSpinner('Checking for winner').start()
-    await load()
-    console.clear()
-    spinner.success({text: 'Winner found!'})
+    // const spinner = createSpinner('Checking for winner').start()
+    // await load()
+    // console.clear()
+    // spinner.success({text: 'Winner found!'})
     // console.clear();
 
     const msg = `${winner} WINS!`
@@ -78,19 +78,6 @@ async function playPrompt(){
     }
 
 }
-
-
-// let loadStr = 'Thinking of a move'
-//     const rainbow = chalkAnimation.neon(loadStr)
-
-//     let loadingDots = setInterval(() => {
-//         rainbow.replace(loadStr += '.')
-//         if (loadStr.length >= 10){
-//             clearInterval(loadingDots)
-//         }
-//     }, 1000)
-
-
 
 async function pcMoveMsg(){
     
