@@ -8,3 +8,4 @@
 
 ## Features:
 - Bright and interactive 
+- Extremely stupid 'AI' 
