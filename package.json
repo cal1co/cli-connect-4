@@ -2,13 +2,13 @@
   "name": "cli-connect-4",
   "version": "1.0.1",
   "description": "",
-  "main": "connect4.js",
+  "main": "main.js",
   "type": "module",
   "scripts": {
     "test": "mocha",
-    "start": "node ./game/connect4.js"
+    "start": "node ./game/main.js"
   },
-  "bin": "./game/connect4.js",
+  "bin": "./game/main.js",
   "keywords": [],
   "author": "",
   "license": "ISC",

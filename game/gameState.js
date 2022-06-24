@@ -6,13 +6,14 @@ let params = {
     winner: null,
 }
 
-const switchPlayer = () => {
-    params.playerTurn *= -1
+const switchPlayer = (playerTurn=params.playerTurn) => {
+    params.playerTurn = playerTurn *= -1
     if (params.playerTurn === 1){
         params.currentPlayer = "X"
     } else {
         params.currentPlayer = "O"
     }
+    return params.playerTurn
 }
 
 export default {

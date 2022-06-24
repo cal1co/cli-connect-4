@@ -1,5 +1,4 @@
 import chalk from 'chalk'
-import chalkAnimation from 'chalk-animation'
 import inquirer from 'inquirer'
 import gradient from 'gradient-string'
 import figlet from 'figlet'
@@ -13,29 +12,28 @@ const load = (ms = 2000) => new Promise((r) => setTimeout(r, ms))
 const start = (ms = 1000) => new Promise((r) => setTimeout(r, ms))
 
 async function winMsg(winner){
-    // const spinner = createSpinner('Checking for winner').start()
-    // await load()
-    // console.clear()
-    // spinner.success({text: 'Winner found!'})
-    // console.clear();
+    const spinner = createSpinner('Checking for winner').start()
+    await load()
+    console.clear()
+    spinner.success({text: 'Winner found!'})
+    console.clear();
 
     const msg = `${winner} WINS!`
-
     figlet(msg, (err, data) => {
         console.log(gradient.pastel.multiline(data))
     })
-    
     process.exit(1)
 }
 
-const placed = (col) => {
-    const str = `${gameState.params.currentPlayer} PLACED IN COLUMN ${col}`
-    const placedMsg = chalkAnimation.karaoke(str)
-    if (gameState.params.playerTurn === 1){
-        console.log(chalk.blue.bold.underline("Player X placed in column", col))
-    } else {
-        console.log(chalk.red.bold.underline("Player O placed in column", col))
+const placed = (turn=gameState.params.playerTurn, col) => {
+    if (col){
+        if (turn === 1){
+            console.log(chalk.blue.bold.underline("Player X placed in column", col))
+        } else {
+            console.log(chalk.red.bold.underline("Player O placed in column", col))
+        }
     }
+    return `${turn} placed`
 }
 
 async function welcome(){

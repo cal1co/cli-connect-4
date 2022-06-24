@@ -46,8 +46,9 @@ const drawBoard = (inputBoard=board) => {
 const checkWin = (currRow, currCol, inputBoard=board) => {
 
     const winnerFound = () => {
-        msg.winMsg(gameState.params.currentPlayer)
-
+        if (inputBoard === board){
+            msg.winMsg(gameState.params.currentPlayer)
+        }
     }
 
     // ROWS
